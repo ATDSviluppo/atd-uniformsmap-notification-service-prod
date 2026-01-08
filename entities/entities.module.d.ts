@@ -1,0 +1,12 @@
+import { EmployeeNotificationClass } from './EmployeeNotification/Employeenotification';
+import { NotificationClass } from './NotificationClass/NotificationClass';
+import { NotificationToken } from './NotificationToken/NotificationToken';
+import { NotificationToSendClass } from './NotificationToSend/NotificationToSend';
+import { NotificationTypeClass } from './NotificationType/NotificationType';
+import { NotificationRec } from './SgNotificationRec/NotificationRec';
+import { PhxEmployee } from './Stargate/PhxEmployee/PhxEmployee';
+import { SgDispositivo } from './Stargate/SgDispositivo/SgDispositivo';
+import { SgTipoDispositivo } from './Stargate/SgTipoDispositivo/SgTipoDispositivo';
+import { TranslateClass } from './Translate/Translate';
+export declare const entities: (typeof NotificationClass | typeof NotificationTypeClass | typeof TranslateClass | typeof EmployeeNotificationClass | typeof NotificationToSendClass)[];
+export declare const sgEntities: (typeof NotificationToken | typeof NotificationRec | typeof PhxEmployee | typeof SgDispositivo | typeof SgTipoDispositivo)[];
