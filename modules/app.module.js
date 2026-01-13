@@ -82,7 +82,9 @@ exports.AppModule = AppModule = __decorate([
                 password: process.env.SG_DATABASE_PASSWORD,
                 database: process.env.SG_DATABASE_NAME,
                 entities: [...entities_module_1.sgEntities],
-                synchronize: true,
+                synchronize: false,
+                migrationsRun: false,
+                logging: false,
             }),
         ],
         controllers: [
