@@ -6,6 +6,7 @@ export declare class EmployeeNotificationClass {
     employeeId: number;
     idNotificationType: number;
     whenlog: Timestamp;
+    sn_attivo: string;
     notificationType: NotificationTypeClass;
     notificationToSends: NotificationToSendClass[];
 }

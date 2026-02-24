@@ -7,6 +7,7 @@ const NotificationToken_1 = require("./NotificationToken/NotificationToken");
 const NotificationToSend_1 = require("./NotificationToSend/NotificationToSend");
 const NotificationType_1 = require("./NotificationType/NotificationType");
 const NotificationRec_1 = require("./SgNotificationRec/NotificationRec");
+const ditta_1 = require("./Stargate/Ditta/ditta");
 const PhxEmployee_1 = require("./Stargate/PhxEmployee/PhxEmployee");
 const SgDispositivo_1 = require("./Stargate/SgDispositivo/SgDispositivo");
 const SgTipoDispositivo_1 = require("./Stargate/SgTipoDispositivo/SgTipoDispositivo");
@@ -23,6 +24,7 @@ exports.sgEntities = [
     NotificationToken_1.NotificationToken,
     SgDispositivo_1.SgDispositivo,
     SgTipoDispositivo_1.SgTipoDispositivo,
-    PhxEmployee_1.PhxEmployee
+    PhxEmployee_1.PhxEmployee,
+    ditta_1.Ditta,
 ];
 //# sourceMappingURL=entities.module.js.map

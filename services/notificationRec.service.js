@@ -90,6 +90,8 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
         for (const nt of notificationTypes) {
             const employees = nt.employeeNotifications ?? [];
             for (const emp of employees) {
+                if ((emp.sn_attivo ?? '').trim().toUpperCase() !== 'Y')
+                    continue;
                 tot++;
                 const notification = new NotificationToSend_1.NotificationToSendClass();
                 notification.employeeNotification = emp;
@@ -125,6 +127,8 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
         for (const nt of notificationTypes) {
             const employees = nt.employeeNotifications ?? [];
             for (const emp of employees) {
+                if ((emp.sn_attivo ?? '').trim().toUpperCase() !== 'Y')
+                    continue;
                 tot++;
                 const notification = new NotificationToSend_1.NotificationToSendClass();
                 notification.employeeNotification = emp;

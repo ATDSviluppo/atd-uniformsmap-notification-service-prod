@@ -3,4 +3,5 @@ export declare class PhxEmployee {
     idDitta: number;
     card?: string;
     description?: string;
+    flags: number;
 }

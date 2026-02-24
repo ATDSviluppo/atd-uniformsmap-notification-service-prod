@@ -52,6 +52,7 @@ __decorate([
     (0, swagger_1.ApiQuery)({ name: 'idEmployee', required: false, description: 'Codice del dipendente', example: '1234' }),
     (0, swagger_1.ApiQuery)({ name: 'card', required: false, description: 'Carta del dipendente', example: '123456' }),
     (0, swagger_1.ApiQuery)({ name: 'description', required: false, description: 'Descrizione del dipendente', example: 'Thomas turbato' }),
+    (0, swagger_1.ApiQuery)({ name: 'flag', required: false, description: 'Flag del dipendente', example: '0' }),
     (0, swagger_1.ApiResponse)({
         status: 200,
         description: 'Lista dei dipendenti filtrata',

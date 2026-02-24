@@ -33,6 +33,10 @@ __decorate([
     __metadata("design:type", typeorm_1.Timestamp)
 ], EmployeeNotificationClass.prototype, "whenlog", void 0);
 __decorate([
+    (0, typeorm_1.Column)('char', { name: 'sn_attivo', default: 'S' }),
+    __metadata("design:type", String)
+], EmployeeNotificationClass.prototype, "sn_attivo", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(() => NotificationType_1.NotificationTypeClass, (notificationTypeClass) => notificationTypeClass.employeeNotifications),
     (0, typeorm_1.JoinColumn)([{ name: 'id_notification_type', referencedColumnName: 'idNotificationType' }]),
     __metadata("design:type", NotificationType_1.NotificationTypeClass)

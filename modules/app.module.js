@@ -38,6 +38,8 @@ const sgDispositivo_module_1 = require("../entities/Stargate/SgDispositivo/sgDis
 const SgTipoDispositivo_module_1 = require("../entities/Stargate/SgTipoDispositivo/SgTipoDispositivo.module");
 const PhxEmployee_module_1 = require("../entities/Stargate/PhxEmployee/PhxEmployee.module");
 const phxController_controller_1 = require("../controllers/phxController.controller");
+const ditta_module_1 = require("../entities/Stargate/Ditta/ditta.module");
+const ditta_controller_1 = require("../controllers/ditta.controller");
 dotenv.config();
 let AppModule = class AppModule {
     configure(consumer) {
@@ -62,6 +64,7 @@ exports.AppModule = AppModule = __decorate([
             sgDispositivo_module_1.SgDispositivoModule,
             SgTipoDispositivo_module_1.SgTipoDispositivoModule,
             PhxEmployee_module_1.PhxEmployeeModule,
+            ditta_module_1.DittaModule,
             typeorm_1.TypeOrmModule.forRoot({
                 name: 'default',
                 type: 'mysql',
@@ -97,6 +100,7 @@ exports.AppModule = AppModule = __decorate([
             sgTipoDispositivo_controller_1.SgTipoDispositivoController,
             sgTipoDispositivo_controller_1.SgTipoDispositivoController,
             phxController_controller_1.PhxEmployeeController,
+            ditta_controller_1.DittaController,
         ],
         providers: [
             NotificationClass_service_1.NotificationClassService,

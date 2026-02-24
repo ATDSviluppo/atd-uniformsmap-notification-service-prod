@@ -30,6 +30,10 @@ __decorate([
     (0, typeorm_1.Column)({ name: 'description', length: 250, nullable: true }),
     __metadata("design:type", String)
 ], PhxEmployee.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'flags', type: 'int', default: 0 }),
+    __metadata("design:type", Number)
+], PhxEmployee.prototype, "flags", void 0);
 exports.PhxEmployee = PhxEmployee = __decorate([
     (0, typeorm_1.Entity)({ name: 'phx_employees' })
 ], PhxEmployee);
