@@ -35,7 +35,6 @@ let NotificationToSendService = class NotificationToSendService {
     findToSend() {
         return this.repo.find({
             where: { sent: false },
-            take: 20,
             order: { idNotificationToSend: 'ASC' },
             relations: ['employeeNotification'],
         });

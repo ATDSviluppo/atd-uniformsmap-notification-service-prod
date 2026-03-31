@@ -90,7 +90,7 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
         for (const nt of notificationTypes) {
             const employees = nt.employeeNotifications ?? [];
             for (const emp of employees) {
-                if ((emp.sn_attivo ?? '').trim().toUpperCase() !== 'Y')
+                if ((emp.sn_attivo ?? '').trim().toUpperCase() !== 'S')
                     continue;
                 tot++;
                 const notification = new NotificationToSend_1.NotificationToSendClass();
@@ -160,6 +160,8 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
                 let token = await this.getTokenSG(n.employeeNotification.employeeId);
                 if (token.length == 0) {
                     this.logger.error(`No token for employee ${n.employeeNotification.employeeId}`);
+                    n.sent = true;
+                    await this.notificationToSendService.update(n.idNotificationToSend, n);
                     continue;
                 }
                 const type = await this.notificationTypeService.findOne(n.employeeNotification.idNotificationType);
