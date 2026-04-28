@@ -51,11 +51,16 @@ let NotificationToSendService = class NotificationToSendService {
         await this.repo.delete(id);
         return { deleted: true };
     }
-    async getLastNotification(emp) {
+    async getLastNotification(emp, eventId, logId) {
+        const whereCondition = { idEmployeeNotification: emp };
+        if (eventId) {
+            whereCondition.eventId = eventId;
+        }
+        if (logId) {
+            whereCondition.logId = logId;
+        }
         const lastNotification = await this.repo.findOne({
-            where: {
-                idEmployeeNotification: emp,
-            },
+            where: whereCondition,
             order: {
                 idNotificationToSend: 'DESC',
             },

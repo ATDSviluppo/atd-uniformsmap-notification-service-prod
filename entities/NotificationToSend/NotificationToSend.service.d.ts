@@ -11,6 +11,6 @@ export declare class NotificationToSendService {
     remove(id: number): Promise<{
         deleted: boolean;
     }>;
-    getLastNotification(emp: number): Promise<NotificationToSendClass>;
+    getLastNotification(emp: number, eventId?: string, logId?: string): Promise<NotificationToSendClass>;
     cleanTable(dateLimit: Date): Promise<void>;
 }

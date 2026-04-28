@@ -90,8 +90,12 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
         for (const nt of notificationTypes) {
             const employees = nt.employeeNotifications ?? [];
             for (const emp of employees) {
-                if ((emp.sn_attivo ?? '').trim().toUpperCase() !== 'S')
+                if (!['S', 'Y'].includes((emp.sn_attivo ?? '').trim().toUpperCase()))
                     continue;
+                if (!this.isWithinSchedule(nt.startTime, nt.endTime)) {
+                    this.logger.debug(`Skip: out of schedule window for employee ${emp.idEmployeeNotification}`);
+                    continue;
+                }
                 tot++;
                 const notification = new NotificationToSend_1.NotificationToSendClass();
                 notification.employeeNotification = emp;
@@ -99,7 +103,7 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
                 notification.logId = null;
                 notification.whenlog = new Date().toISOString();
                 notification.sent = false;
-                const lastNotification = await this.notificationToSendService.getLastNotification(emp.idEmployeeNotification);
+                const lastNotification = await this.notificationToSendService.getLastNotification(emp.idEmployeeNotification, eventObj.idEvent);
                 if (!lastNotification || this.isTimeoutExpired(lastNotification.whenlog, nt.timeout)) {
                     await this.notificationToSendService.create(notification);
                     saved++;
@@ -127,8 +131,12 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
         for (const nt of notificationTypes) {
             const employees = nt.employeeNotifications ?? [];
             for (const emp of employees) {
-                if ((emp.sn_attivo ?? '').trim().toUpperCase() !== 'Y')
+                if (!['S', 'Y'].includes((emp.sn_attivo ?? '').trim().toUpperCase()))
                     continue;
+                if (!this.isWithinSchedule(nt.startTime, nt.endTime)) {
+                    this.logger.debug(`Skip: out of schedule window for employee ${emp.idEmployeeNotification}`);
+                    continue;
+                }
                 tot++;
                 const notification = new NotificationToSend_1.NotificationToSendClass();
                 notification.employeeNotification = emp;
@@ -136,7 +144,7 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
                 notification.logId = logObj.idLog;
                 notification.whenlog = new Date().toISOString();
                 notification.sent = false;
-                const lastNotification = await this.notificationToSendService.getLastNotification(emp.idEmployeeNotification);
+                const lastNotification = await this.notificationToSendService.getLastNotification(emp.idEmployeeNotification, null, logObj.idLog);
                 if (!lastNotification || this.isTimeoutExpired(lastNotification.whenlog, nt.timeout)) {
                     await this.notificationToSendService.create(notification);
                     saved++;
@@ -219,6 +227,23 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
             console.error('Errore invio notifiche:', error);
             throw error;
         }
+    }
+    isWithinSchedule(startTime, endTime) {
+        if (startTime == null || endTime == null)
+            return true;
+        if (startTime === 0 && endTime === 0)
+            return true;
+        const now = new Date();
+        const currentHHMM = now.getHours() * 100 + now.getMinutes();
+        if (startTime <= 2400 && endTime <= 2400) {
+            if (startTime <= endTime) {
+                return currentHHMM >= startTime && currentHHMM <= endTime;
+            }
+            else {
+                return currentHHMM >= startTime || currentHHMM <= endTime;
+            }
+        }
+        return true;
     }
     isTimeoutExpired(lastWhen, timeoutMinutes) {
         const lastTime = new Date(lastWhen).getTime();

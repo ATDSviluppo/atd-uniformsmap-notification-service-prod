@@ -21,6 +21,7 @@ export declare class NotificationRecService {
     private getTokenSG;
     private generateMsg;
     private sendNotification;
+    private isWithinSchedule;
     private isTimeoutExpired;
     cleanupOldSentNotifications(): Promise<void>;
 }
