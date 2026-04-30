@@ -17,9 +17,13 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const SgDispositivo_1 = require("./SgDispositivo");
+const SgIsola_1 = require("../SgIsola/SgIsola");
+const SgStabilimento_1 = require("../SgStabilimento/SgStabilimento");
 let DispositivoService = class DispositivoService {
-    constructor(dispositivoRepo) {
+    constructor(dispositivoRepo, isolaRepo, stabilimentoRepo) {
         this.dispositivoRepo = dispositivoRepo;
+        this.isolaRepo = isolaRepo;
+        this.stabilimentoRepo = stabilimentoRepo;
     }
     async findAttivi() {
         return this.dispositivoRepo.find({
@@ -28,11 +32,30 @@ let DispositivoService = class DispositivoService {
             },
         });
     }
+    async getDeviceInfo(idDispositivo) {
+        const result = await this.dispositivoRepo
+            .createQueryBuilder('sd')
+            .select([
+            'sd.cod_dispositivo AS codDispositivo',
+            'sd.descrizione AS desDispositivo',
+            'si.descrizione AS desIsola',
+            'ss.descrizione AS desStabilimento',
+        ])
+            .innerJoin('sg_isola', 'si', 'si.id_isola = sd.id_isola')
+            .innerJoin('sg_stabilimento', 'ss', 'ss.id_stabilimento = si.id_stabilimento')
+            .where('sd.id_dispositivo = :idDispositivo', { idDispositivo })
+            .getRawOne();
+        return result ?? null;
+    }
 };
 exports.DispositivoService = DispositivoService;
 exports.DispositivoService = DispositivoService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(SgDispositivo_1.SgDispositivo, 'sg')),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(SgIsola_1.SgIsola, 'sg')),
+    __param(2, (0, typeorm_1.InjectRepository)(SgStabilimento_1.SgStabilimento, 'sg')),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
+        typeorm_2.Repository])
 ], DispositivoService);
 //# sourceMappingURL=SgDipsositivo.service.js.map

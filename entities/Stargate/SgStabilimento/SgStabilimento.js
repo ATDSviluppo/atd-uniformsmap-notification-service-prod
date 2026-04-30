@@ -9,32 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SgDispositivo = void 0;
+exports.SgStabilimento = void 0;
 const typeorm_1 = require("typeorm");
-let SgDispositivo = class SgDispositivo {
+let SgStabilimento = class SgStabilimento {
 };
-exports.SgDispositivo = SgDispositivo;
+exports.SgStabilimento = SgStabilimento;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'id_dispositivo' }),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'id_stabilimento' }),
     __metadata("design:type", Number)
-], SgDispositivo.prototype, "idDispositivo", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'cod_dispositivo', length: 100 }),
-    __metadata("design:type", String)
-], SgDispositivo.prototype, "codDispositivo", void 0);
+], SgStabilimento.prototype, "idStabilimento", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'descrizione', type: 'varchar', length: 255, nullable: true }),
     __metadata("design:type", String)
-], SgDispositivo.prototype, "descrizione", void 0);
-__decorate([
-    (0, typeorm_1.Column)('int', { name: 'id_isola', nullable: true }),
-    __metadata("design:type", Number)
-], SgDispositivo.prototype, "idIsola", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ name: 'sn_attivo', type: 'varchar', length: 1 }),
-    __metadata("design:type", String)
-], SgDispositivo.prototype, "snAttivo", void 0);
-exports.SgDispositivo = SgDispositivo = __decorate([
-    (0, typeorm_1.Entity)({ name: 'sg_dispositivo' })
-], SgDispositivo);
-//# sourceMappingURL=SgDispositivo.js.map
+], SgStabilimento.prototype, "descrizione", void 0);
+exports.SgStabilimento = SgStabilimento = __decorate([
+    (0, typeorm_1.Entity)({ name: 'sg_stabilimento' })
+], SgStabilimento);
+//# sourceMappingURL=SgStabilimento.js.map

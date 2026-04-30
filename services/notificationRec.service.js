@@ -23,15 +23,17 @@ const NotificationToSend_service_1 = require("../entities/NotificationToSend/Not
 const NotificationType_service_1 = require("../entities/NotificationType/NotificationType.service");
 const NotificationRec_1 = require("../entities/SgNotificationRec/NotificationRec");
 const Translate_service_1 = require("../entities/Translate/Translate.service");
+const SgDipsositivo_service_1 = require("../entities/Stargate/SgDispositivo/SgDipsositivo.service");
 const typeorm_2 = require("typeorm");
 const firebase_1 = require("../firebase");
 let NotificationRecService = NotificationRecService_1 = class NotificationRecService {
-    constructor(repo, notificationTypeService, notificationToSendService, notificationTokenService, translateService) {
+    constructor(repo, notificationTypeService, notificationToSendService, notificationTokenService, translateService, dispositivoService) {
         this.repo = repo;
         this.notificationTypeService = notificationTypeService;
         this.notificationToSendService = notificationToSendService;
         this.notificationTokenService = notificationTokenService;
         this.translateService = translateService;
+        this.dispositivoService = dispositivoService;
         this.processing = false;
         this.processingToSend = false;
         this.logger = new common_1.Logger(NotificationRecService_1.name);
@@ -182,8 +184,12 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
                     this.logger.error(`Translate for type ${n.employeeNotification.idNotificationType} and lang ${process.env.NOTIFICATION_LANG}`);
                     continue;
                 }
+                let deviceInfo = null;
+                if (type.idDispSg) {
+                    deviceInfo = await this.dispositivoService.getDeviceInfo(type.idDispSg);
+                }
                 msg = this.generateMsg(msg, type);
-                await this.sendNotification(type.notificationClass.description, msg, token);
+                await this.sendNotification(type.notificationClass.description, msg, token, deviceInfo);
                 n.sent = true;
                 await this.notificationToSendService.update(n.idNotificationToSend, n);
             }
@@ -205,13 +211,19 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
                 '');
         });
     }
-    async sendNotification(title, body, tokens) {
+    async sendNotification(title, body, tokens, deviceInfo) {
         if (!tokens || tokens.length === 0)
             return;
         const message = {
             tokens,
             notification: { title, body },
-            data: { url: '/' },
+            data: {
+                url: '/',
+                codDispositivo: deviceInfo?.codDispositivo ?? '',
+                desDispositivo: deviceInfo?.desDispositivo ?? '',
+                desIsola: deviceInfo?.desIsola ?? '',
+                desStabilimento: deviceInfo?.desStabilimento ?? '',
+            },
         };
         const dryRun = process.env.FIREBASE_DRYRUN === 'S';
         try {
@@ -288,6 +300,7 @@ exports.NotificationRecService = NotificationRecService = NotificationRecService
         NotificationType_service_1.NotificationTypeService,
         NotificationToSend_service_1.NotificationToSendService,
         NotificationToken_service_1.NotificationTokenService,
-        Translate_service_1.TranslateService])
+        Translate_service_1.TranslateService,
+        SgDipsositivo_service_1.DispositivoService])
 ], NotificationRecService);
 //# sourceMappingURL=notificationRec.service.js.map

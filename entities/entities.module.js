@@ -10,6 +10,8 @@ const NotificationRec_1 = require("./SgNotificationRec/NotificationRec");
 const ditta_1 = require("./Stargate/Ditta/ditta");
 const PhxEmployee_1 = require("./Stargate/PhxEmployee/PhxEmployee");
 const SgDispositivo_1 = require("./Stargate/SgDispositivo/SgDispositivo");
+const SgIsola_1 = require("./Stargate/SgIsola/SgIsola");
+const SgStabilimento_1 = require("./Stargate/SgStabilimento/SgStabilimento");
 const SgTipoDispositivo_1 = require("./Stargate/SgTipoDispositivo/SgTipoDispositivo");
 const Translate_1 = require("./Translate/Translate");
 exports.entities = [
@@ -23,6 +25,8 @@ exports.sgEntities = [
     NotificationRec_1.NotificationRec,
     NotificationToken_1.NotificationToken,
     SgDispositivo_1.SgDispositivo,
+    SgIsola_1.SgIsola,
+    SgStabilimento_1.SgStabilimento,
     SgTipoDispositivo_1.SgTipoDispositivo,
     PhxEmployee_1.PhxEmployee,
     ditta_1.Ditta,

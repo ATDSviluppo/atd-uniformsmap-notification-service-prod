@@ -12,12 +12,14 @@ const typeorm_1 = require("@nestjs/typeorm");
 const sgDispositivo_controller_1 = require("../../../controllers/sgDispositivo.controller");
 const SgDipsositivo_service_1 = require("./SgDipsositivo.service");
 const SgDispositivo_1 = require("./SgDispositivo");
+const SgIsola_1 = require("../SgIsola/SgIsola");
+const SgStabilimento_1 = require("../SgStabilimento/SgStabilimento");
 let SgDispositivoModule = class SgDispositivoModule {
 };
 exports.SgDispositivoModule = SgDispositivoModule;
 exports.SgDispositivoModule = SgDispositivoModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([SgDispositivo_1.SgDispositivo], 'sg')],
+        imports: [typeorm_1.TypeOrmModule.forFeature([SgDispositivo_1.SgDispositivo, SgIsola_1.SgIsola, SgStabilimento_1.SgStabilimento], 'sg')],
         controllers: [sgDispositivo_controller_1.DispositivoController],
         providers: [SgDipsositivo_service_1.DispositivoService],
         exports: [SgDipsositivo_service_1.DispositivoService],

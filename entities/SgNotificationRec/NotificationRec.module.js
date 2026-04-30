@@ -15,6 +15,7 @@ const NotificationType_module_1 = require("../NotificationType/NotificationType.
 const NotificationToSend_module_1 = require("../NotificationToSend/NotificationToSend.module");
 const NotificationToken_module_1 = require("../NotificationToken/NotificationToken.module");
 const Translate_module_1 = require("../Translate/Translate.module");
+const sgDispositivo_module_1 = require("../Stargate/SgDispositivo/sgDispositivo.module");
 let NotificationRecModule = class NotificationRecModule {
 };
 exports.NotificationRecModule = NotificationRecModule;
@@ -26,6 +27,7 @@ exports.NotificationRecModule = NotificationRecModule = __decorate([
             NotificationToSend_module_1.NotificationToSendModule,
             NotificationToken_module_1.NotificationTokenModule,
             Translate_module_1.TranslateModule,
+            sgDispositivo_module_1.SgDispositivoModule,
         ],
         providers: [notificationRec_service_1.NotificationRecService],
         exports: [notificationRec_service_1.NotificationRecService],
