@@ -26,14 +26,16 @@ const Translate_service_1 = require("../entities/Translate/Translate.service");
 const SgDipsositivo_service_1 = require("../entities/Stargate/SgDispositivo/SgDipsositivo.service");
 const typeorm_2 = require("typeorm");
 const firebase_1 = require("../firebase");
+const PhxEmployee_service_1 = require("../entities/Stargate/PhxEmployee/PhxEmployee.service");
 let NotificationRecService = NotificationRecService_1 = class NotificationRecService {
-    constructor(repo, notificationTypeService, notificationToSendService, notificationTokenService, translateService, dispositivoService) {
+    constructor(repo, notificationTypeService, notificationToSendService, notificationTokenService, translateService, dispositivoService, phxEmployeeService) {
         this.repo = repo;
         this.notificationTypeService = notificationTypeService;
         this.notificationToSendService = notificationToSendService;
         this.notificationTokenService = notificationTokenService;
         this.translateService = translateService;
         this.dispositivoService = dispositivoService;
+        this.phxEmployeeService = phxEmployeeService;
         this.processing = false;
         this.processingToSend = false;
         this.logger = new common_1.Logger(NotificationRecService_1.name);
@@ -315,6 +317,7 @@ exports.NotificationRecService = NotificationRecService = NotificationRecService
         NotificationToSend_service_1.NotificationToSendService,
         NotificationToken_service_1.NotificationTokenService,
         Translate_service_1.TranslateService,
-        SgDipsositivo_service_1.DispositivoService])
+        SgDipsositivo_service_1.DispositivoService,
+        PhxEmployee_service_1.PhxEmployeeService])
 ], NotificationRecService);
 //# sourceMappingURL=notificationRec.service.js.map

@@ -5,6 +5,7 @@ import { NotificationRec } from "src/entities/SgNotificationRec/NotificationRec"
 import { TranslateService } from "src/entities/Translate/Translate.service";
 import { DispositivoService } from "src/entities/Stargate/SgDispositivo/SgDipsositivo.service";
 import { Repository } from "typeorm";
+import { PhxEmployeeService } from "src/entities/Stargate/PhxEmployee/PhxEmployee.service";
 export declare class NotificationRecService {
     private readonly repo;
     private readonly notificationTypeService;
@@ -12,11 +13,11 @@ export declare class NotificationRecService {
     private readonly notificationTokenService;
     private readonly translateService;
     private readonly dispositivoService;
+    private readonly phxEmployeeService;
     private processing;
     private processingToSend;
     private readonly logger;
-    phxEmployeeService: any;
-    constructor(repo: Repository<NotificationRec>, notificationTypeService: NotificationTypeService, notificationToSendService: NotificationToSendService, notificationTokenService: NotificationTokenService, translateService: TranslateService, dispositivoService: DispositivoService);
+    constructor(repo: Repository<NotificationRec>, notificationTypeService: NotificationTypeService, notificationToSendService: NotificationToSendService, notificationTokenService: NotificationTokenService, translateService: TranslateService, dispositivoService: DispositivoService, phxEmployeeService: PhxEmployeeService);
     processNotifications(): Promise<void>;
     private handlePhxEvent;
     private handlePhxLog;
