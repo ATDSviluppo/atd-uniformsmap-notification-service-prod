@@ -94,8 +94,10 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
             const employees = nt.employeeNotifications ?? [];
             for (const emp of employees) {
                 const employee = await this.phxEmployeeService.findById(emp.employeeId);
-                if (employee.idDitta != eventObj.id_ditta)
+                if (!employee || employee.idDitta != eventObj.id_ditta) {
+                    this.logger.warn(`Skip: employee ${emp.idEmployeeNotification} not found for ditta ${eventObj.id_ditta}`);
                     continue;
+                }
                 if (!['S', 'Y'].includes((emp.sn_attivo ?? '').trim().toUpperCase()))
                     continue;
                 if (!this.isWithinSchedule(nt.startTime, nt.endTime)) {
@@ -139,8 +141,10 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
             const employees = nt.employeeNotifications ?? [];
             for (const emp of employees) {
                 const employee = await this.phxEmployeeService.findById(emp.employeeId);
-                if (employee.idDitta != logObj.id_ditta)
+                if (!employee || employee.idDitta != logObj.id_ditta) {
+                    this.logger.warn(`Skip: employee ${emp.idEmployeeNotification} not found for ditta ${logObj.id_ditta}`);
                     continue;
+                }
                 if (!['S', 'Y'].includes((emp.sn_attivo ?? '').trim().toUpperCase()))
                     continue;
                 if (!this.isWithinSchedule(nt.startTime, nt.endTime)) {
