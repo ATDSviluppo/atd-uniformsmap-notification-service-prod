@@ -93,7 +93,7 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
         for (const nt of notificationTypes) {
             const employees = nt.employeeNotifications ?? [];
             for (const emp of employees) {
-                const employee = await this.phxEmployeeService.findById(emp.employeeId);
+                const [employee] = await this.phxEmployeeService.findByFilters({ idEmployee: emp.employeeId.toString() });
                 if (!employee || employee.idDitta != eventObj.id_ditta) {
                     this.logger.warn(`Skip: employee ${emp.idEmployeeNotification} not found for ditta ${eventObj.id_ditta}`);
                     continue;
@@ -140,7 +140,7 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
         for (const nt of notificationTypes) {
             const employees = nt.employeeNotifications ?? [];
             for (const emp of employees) {
-                const employee = await this.phxEmployeeService.findById(emp.employeeId);
+                const [employee] = await this.phxEmployeeService.findByFilters({ idEmployee: emp.employeeId.toString() });
                 if (!employee || employee.idDitta != logObj.id_ditta) {
                     this.logger.warn(`Skip: employee ${emp.idEmployeeNotification} not found for ditta ${logObj.id_ditta}`);
                     continue;
