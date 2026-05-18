@@ -15,6 +15,7 @@ export declare class NotificationRecService {
     private processing;
     private processingToSend;
     private readonly logger;
+    phxEmployeeService: any;
     constructor(repo: Repository<NotificationRec>, notificationTypeService: NotificationTypeService, notificationToSendService: NotificationToSendService, notificationTokenService: NotificationTokenService, translateService: TranslateService, dispositivoService: DispositivoService);
     processNotifications(): Promise<void>;
     private handlePhxEvent;

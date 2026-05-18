@@ -23,10 +23,6 @@ __decorate([
     __metadata("design:type", String)
 ], SgDispositivo.prototype, "codDispositivo", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'descrizione', type: 'varchar', length: 255, nullable: true }),
-    __metadata("design:type", String)
-], SgDispositivo.prototype, "descrizione", void 0);
-__decorate([
     (0, typeorm_1.Column)('int', { name: 'id_isola', nullable: true }),
     __metadata("design:type", Number)
 ], SgDispositivo.prototype, "idIsola", void 0);

@@ -37,7 +37,7 @@ let DispositivoService = class DispositivoService {
             .createQueryBuilder('sd')
             .select([
             'sd.cod_dispositivo AS codDispositivo',
-            'sd.descrizione AS desDispositivo',
+            'sd.cod_dispositivo AS desDispositivo',
             'si.descrizione AS desIsola',
             'ss.descrizione AS desStabilimento',
         ])
