@@ -205,6 +205,7 @@ let NotificationRecService = NotificationRecService_1 = class NotificationRecSer
                 msg = this.generateMsg(msg, type);
                 if (deviceInfo)
                     msg = msg + "\n" + deviceInfo?.desStabilimento + " - " + deviceInfo?.desIsola + " - " + deviceInfo?.desDispositivo;
+                msg = msg + "\n" + n.whenlog;
                 await this.sendNotification(type.notificationClass.description, msg, token, deviceInfo);
                 n.sent = true;
                 await this.notificationToSendService.update(n.idNotificationToSend, n);
