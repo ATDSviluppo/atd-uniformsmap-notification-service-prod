@@ -54,10 +54,10 @@ let NotificationToSendService = class NotificationToSendService {
     async getLastNotification(emp, eventId, logId) {
         const whereCondition = { idEmployeeNotification: emp };
         if (eventId) {
-            whereCondition.eventId != null;
+            whereCondition.eventId = eventId;
         }
         if (logId) {
-            whereCondition.logId != null;
+            whereCondition.logId = logId;
         }
         const lastNotification = await this.repo.findOne({
             where: whereCondition,
